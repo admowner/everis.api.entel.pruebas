@@ -1,0 +1,679 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "APIM-physicalResources",
+    "description": "Esta api permite bloquear y desbloquear un equipo",
+    "version": "1.0.0"
+  },
+  "host": "10.49.22.7:8443",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/resource/v1/physicalResources/changeAvailability": {
+      "post": {
+        "tags": [
+          "changeAvailability"
+        ],
+        "summary": "Bloquea o desbloquea un equipo.",
+        "description": "TBD",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "applicationCode",
+            "in": "header",
+            "description": "Código único que representa al sistema consumidor.",
+            "required": true,
+            "type": "string",
+            "default": "ATG"
+          },
+          {
+            "name": "consumerId",
+            "in": "header",
+            "description": "Código único de identificación de la ejecución, que identifica el evento del consumidor.",
+            "required": true,
+            "type": "string",
+            "default": "1234"
+          },
+          {
+            "name": "countryCode",
+            "in": "header",
+            "description": "Identifica el país desde donde se origina la petición.",
+            "required": true,
+            "type": "string",
+            "default": "CHL"
+          },
+          {
+            "name": "requestTimestamp",
+            "in": "header",
+            "description": "Fecha, hora y timezone en el cual se envía la petición del consumidor.",
+            "required": true,
+            "type": "string",
+            "default": "2018-12-12T12:12:12.444-03:00"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Estructura request a envíar.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RequestAvailability"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK - Operación concluida exitosa",
+            "schema": {
+              "$ref": "#/definitions/ResponseReserve"
+            }
+          },
+          "400": {
+            "description": "Error - Parámetros invalidos",
+            "schema": {
+              "$ref": "#/definitions/ResponseError400"
+            }
+          },
+          "401": {
+            "description": "Error - Error de autenticación",
+            "schema": {
+              "$ref": "#/definitions/ResponseError401"
+            }
+          },
+          "404": {
+            "description": "Error - Recurso no encontrado.",
+            "schema": {
+              "$ref": "#/definitions/ResponseError404"
+            }
+          },
+          "405": {
+            "description": "Error - Método no permitido",
+            "schema": {
+              "$ref": "#/definitions/ResponseError405"
+            }
+          },
+          "422": {
+            "description": "Error - Error de procesamiento de la solicitud",
+            "schema": {
+              "$ref": "#/definitions/ResponseError422"
+            }
+          },
+          "429": {
+            "description": "Error - Demasiadas solicitudes",
+            "schema": {
+              "$ref": "#/definitions/ResponseError429"
+            }
+          },
+          "500": {
+            "description": "Error - Error inesperado en el servidor",
+            "schema": {
+              "$ref": "#/definitions/ResponseError500"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "changeAvailability"
+        ],
+        "summary": "Bloquea o desbloquea un equipo.",
+        "description": "TBD",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "applicationCode",
+            "in": "header",
+            "description": "Código único que representa al sistema consumidor.",
+            "required": true,
+            "type": "string",
+            "default": "ATG"
+          },
+          {
+            "name": "consumerId",
+            "in": "header",
+            "description": "Código único de identificación de la ejecución, que identifica el evento del consumidor.",
+            "required": true,
+            "type": "string",
+            "default": "1234"
+          },
+          {
+            "name": "countryCode",
+            "in": "header",
+            "description": "Identifica el país desde donde se origina la petición.",
+            "required": true,
+            "type": "string",
+            "default": "CHL"
+          },
+          {
+            "name": "requestTimestamp",
+            "in": "header",
+            "description": "Fecha, hora y timezone en el cual se envía la petición del consumidor.",
+            "required": true,
+            "type": "string",
+            "default": "2018-12-12T12:12:12.444-03:00"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK - Operación concluida exitosa",
+            "schema": {
+              "$ref": "#/definitions/ResponseReserve"
+            }
+          },
+          "400": {
+            "description": "Error - Parámetros invalidos",
+            "schema": {
+              "$ref": "#/definitions/ResponseError400"
+            }
+          },
+          "401": {
+            "description": "Error - Error de autenticación",
+            "schema": {
+              "$ref": "#/definitions/ResponseError401"
+            }
+          },
+          "404": {
+            "description": "Error - Recurso no encontrado.",
+            "schema": {
+              "$ref": "#/definitions/ResponseError404"
+            }
+          },
+          "405": {
+            "description": "Error - Método no permitido",
+            "schema": {
+              "$ref": "#/definitions/ResponseError405"
+            }
+          },
+          "422": {
+            "description": "Error - Error de procesamiento de la solicitud",
+            "schema": {
+              "$ref": "#/definitions/ResponseError422"
+            }
+          },
+          "429": {
+            "description": "Error - Demasiadas solicitudes",
+            "schema": {
+              "$ref": "#/definitions/ResponseError429"
+            }
+          },
+          "500": {
+            "description": "Error - Error inesperado en el servidor",
+            "schema": {
+              "$ref": "#/definitions/ResponseError500"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ResponseError400": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "object",
+          "properties": {
+            "transactionId": {
+              "type": "string",
+              "example": "0000016349eeab2d-2c9"
+            },
+            "code": {
+              "type": "string",
+              "example": 400
+            },
+            "description": {
+              "type": "string",
+              "example": "Solicitud incorrecta"
+            },
+            "descriptionDetail": {
+              "type": "string",
+              "example": "La solicitud contiene sintaxis errónea y no debería repetirse."
+            },
+            "responseTimestamp": {
+              "type": "string",
+              "example": "2018/05/10T17:49:56.080"
+            }
+          }
+        }
+      }
+    },
+    "ResponseError401": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "object",
+          "properties": {
+            "transactionId": {
+              "type": "string",
+              "example": "0000016349eeab2d-2c9"
+            },
+            "code": {
+              "type": "string",
+              "example": 401
+            },
+            "description": {
+              "type": "string",
+              "example": "No autorizado"
+            },
+            "descriptionDetail": {
+              "type": "string",
+              "example": "El token de autorización ingresado es inválido."
+            },
+            "responseTimestamp": {
+              "type": "string",
+              "example": "2018/05/10T17:49:56.080"
+            }
+          }
+        }
+      }
+    },
+    "ResponseError404": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "object",
+          "properties": {
+            "transactionId": {
+              "type": "string",
+              "example": "0000016349eeab2d-2c9"
+            },
+            "code": {
+              "type": "string",
+              "example": 404
+            },
+            "description": {
+              "type": "string",
+              "example": "No encontrado"
+            },
+            "descriptionDetail": {
+              "type": "string",
+              "example": "Recurso no encontrado."
+            },
+            "responseTimestamp": {
+              "type": "string",
+              "example": "2018/05/10T17:49:56.080"
+            }
+          }
+        }
+      }
+    },
+    "ResponseError405": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "object",
+          "properties": {
+            "transactionId": {
+              "type": "string",
+              "example": "0000016349eeab2d-2c9"
+            },
+            "code": {
+              "type": "string",
+              "example": 405
+            },
+            "description": {
+              "type": "string",
+              "example": "Metodo no permitido"
+            },
+            "descriptionDetail": {
+              "type": "string",
+              "example": "Una petición fue hecha a una URI utilizando un método de solicitud no soportado por dicha URI."
+            },
+            "responseTimestamp": {
+              "type": "string",
+              "example": "2018/05/10T17:49:56.080"
+            }
+          }
+        }
+      }
+    },
+    "ResponseError422": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "object",
+          "properties": {
+            "transactionId": {
+              "type": "string",
+              "example": "0000016349eeab2d-2c9"
+            },
+            "code": {
+              "type": "string",
+              "example": 422
+            },
+            "description": {
+              "type": "string",
+              "example": "Entidad no procesada"
+            },
+            "descriptionDetail": {
+              "type": "string",
+              "example": "La solicitud está bien formada pero fue imposible seguirla debido a errores semánticos."
+            },
+            "responseTimestamp": {
+              "type": "string",
+              "example": "2018/05/10T17:49:56.080"
+            }
+          }
+        }
+      }
+    },
+    "ResponseError429": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "object",
+          "properties": {
+            "transactionId": {
+              "type": "string",
+              "example": "0000016349eeab2d-2c9"
+            },
+            "code": {
+              "type": "string",
+              "example": 429
+            },
+            "description": {
+              "type": "string",
+              "example": "Límite de solicitudes excedido"
+            },
+            "descriptionDetail": {
+              "type": "string",
+              "example": "Se ha excedido el límite de solicitudes para un período de tiempo determinado."
+            },
+            "responseTimestamp": {
+              "type": "string",
+              "example": "2018/05/10T17:49:56.080"
+            }
+          }
+        }
+      }
+    },
+    "ResponseError500": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "object",
+          "properties": {
+            "transactionId": {
+              "type": "string",
+              "example": "0000016349eeab2d-2c9"
+            },
+            "code": {
+              "type": "string",
+              "example": 500
+            },
+            "description": {
+              "type": "string",
+              "example": "Error en el servidor"
+            },
+            "descriptionDetail": {
+              "type": "string",
+              "example": "El servidor ha encontrado una error inesperado."
+            },
+            "responseTimestamp": {
+              "type": "string",
+              "example": "2018/05/10T17:49:56.080"
+            }
+          }
+        }
+      }
+    },
+    "ResponseReserve": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "object",
+          "properties": {
+            "transactionId": {
+              "type": "string",
+              "title": "The Transactionid Schema ",
+              "default": "",
+              "example": "000001635079ff66-f25b"
+            },
+            "code": {
+              "type": "string",
+              "title": "The Code Schema ",
+              "default": "",
+              "example": 200
+            },
+            "description": {
+              "type": "string",
+              "title": "The Description Schema ",
+              "default": "",
+              "example": "OK"
+            },
+            "descriptionDetail": {
+              "type": "string",
+              "title": "The Descriptiondetail Schema ",
+              "default": "",
+              "example": "Procesamiento concluído exitosamente"
+            },
+            "responseTimestamp": {
+              "type": "string",
+              "title": "The Responsetimestamp Schema ",
+              "default": "",
+              "example": "2018/05/14T10:16:10.484"
+            }
+          }
+        }
+      }
+    },
+    "RequestAvailability": {
+      "type": "object",
+      "title": "The Root Schema",
+      "required": [
+        "ResourceControl"
+      ],
+      "properties": {
+        "ResourceControl": {
+          "type": "object",
+          "title": "The Resourcecontrol Schema",
+          "required": [
+            "comments",
+            "complaintDate",
+            "indicator",
+            "lostDate",
+            "modality",
+            "operatorID",
+            "operatorNofiticationDate",
+            "reason",
+            "requestDate",
+            "status",
+            "system",
+            "Resource"
+          ],
+          "properties": {
+            "comments": {
+              "type": "string",
+              "title": "The Comments Schema",
+              "default": "",
+              "example": "1",
+              "pattern": "^(.*)$"
+            },
+            "complaintDate": {
+              "type": "string",
+              "title": "The Complaintdate Schema",
+              "default": "",
+              "example": "2017-05-15T02:41:13",
+              "pattern": "^(.*)$"
+            },
+            "indicator": {
+              "type": "string",
+              "title": "The Indicator Schema",
+              "default": "",
+              "example": "1",
+              "pattern": "^(.*)$"
+            },
+            "lostDate": {
+              "type": "string",
+              "title": "The Lostdate Schema",
+              "default": "",
+              "example": "2013-12-21T08:32:42-03:00",
+              "pattern": "^(.*)$"
+            },
+            "modality": {
+              "type": "string",
+              "title": "The Modality Schema",
+              "default": "",
+              "example": "1",
+              "pattern": "^(.*)$"
+            },
+            "operatorID": {
+              "type": "string",
+              "title": "The Operatorid Schema",
+              "default": "",
+              "example": "1",
+              "pattern": "^(.*)$"
+            },
+            "operatorNofiticationDate": {
+              "type": "string",
+              "title": "The Operatornofiticationdate Schema",
+              "default": "",
+              "example": "2016-01-01T16:07:42",
+              "pattern": "^(.*)$"
+            },
+            "reason": {
+              "type": "string",
+              "title": "The Reason Schema",
+              "default": "",
+              "example": "1",
+              "pattern": "^(.*)$"
+            },
+            "requestDate": {
+              "type": "string",
+              "title": "The Requestdate Schema",
+              "default": "",
+              "example": "2012-01-07T16:42:56",
+              "pattern": "^(.*)$"
+            },
+            "status": {
+              "type": "string",
+              "title": "The Status Schema",
+              "default": "",
+              "example": "1",
+              "pattern": "^(.*)$"
+            },
+            "system": {
+              "type": "string",
+              "title": "The System Schema",
+              "default": "",
+              "example": "1",
+              "pattern": "^(.*)$"
+            },
+            "Resource": {
+              "type": "object",
+              "title": "The Resource Schema",
+              "required": [
+                "imei",
+                "resourceType",
+                "Asset",
+                "PhysicalResourceSpec"
+              ],
+              "properties": {
+                "imei": {
+                  "type": "string",
+                  "title": "The Imei Schema",
+                  "default": "",
+                  "example": "6",
+                  "pattern": "^(.*)$"
+                },
+                "resourceType": {
+                  "type": "string",
+                  "title": "The Resourcetype Schema",
+                  "default": "",
+                  "example": "1",
+                  "pattern": "^(.*)$"
+                },
+                "Asset": {
+                  "type": "object",
+                  "title": "The Asset Schema",
+                  "required": [
+                    "IMSI",
+                    "MSISDN"
+                  ],
+                  "properties": {
+                    "IMSI": {
+                      "type": "object",
+                      "title": "The Imsi Schema",
+                      "required": [
+                        "SN"
+                      ],
+                      "properties": {
+                        "SN": {
+                          "type": "string",
+                          "title": "The Sn Schema",
+                          "default": "",
+                          "example": "1",
+                          "pattern": "^(.*)$"
+                        }
+                      }
+                    },
+                    "MSISDN": {
+                      "type": "object",
+                      "title": "The Msisdn Schema",
+                      "required": [
+                        "SN"
+                      ],
+                      "properties": {
+                        "SN": {
+                          "type": "string",
+                          "title": "The Sn Schema",
+                          "default": "",
+                          "example": "1",
+                          "pattern": "^(.*)$"
+                        }
+                      }
+                    }
+                  }
+                },
+                "PhysicalResourceSpec": {
+                  "type": "object",
+                  "title": "The Physicalresourcespec Schema",
+                  "required": [
+                    "brandName",
+                    "modelNumber",
+                    "tecnology"
+                  ],
+                  "properties": {
+                    "brandName": {
+                      "type": "string",
+                      "title": "The Brandname Schema",
+                      "default": "",
+                      "example": "1",
+                      "pattern": "^(.*)$"
+                    },
+                    "modelNumber": {
+                      "type": "string",
+                      "title": "The Modelnumber Schema",
+                      "default": "",
+                      "example": "1",
+                      "pattern": "^(.*)$"
+                    },
+                    "tecnology": {
+                      "type": "string",
+                      "title": "The Tecnology Schema",
+                      "default": "",
+                      "example": "1",
+                      "pattern": "^(.*)$"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
